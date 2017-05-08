@@ -1,4 +1,9 @@
-var mongoose = require('mongoose');
+var mongoose = require('mongoose');//Mongoose object
+/*
+*
+* New Schema for Doctor
+*
+*/
 var Pharm = new mongoose.Schema({
     pharmid: {
         type: Number
@@ -12,4 +17,4 @@ var Pharm = new mongoose.Schema({
         default: Date.now
     }
 });
-module.exports = mongoose.model("Pharm", Pharm);
+module.exports = mongoose.model("Pharm", Pharm); //Exporting Pharm model

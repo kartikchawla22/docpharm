@@ -1,7 +1,9 @@
 var User = require('../models/UserModel');
 var Doc = require('../models/DocModel');
 var Pharm = require('../models/PharmModel');
-
+var Promise = require("bluebird");
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
 exports.PostUser = function (req, res) {
     console.log(req.body);
     var user = new User({
@@ -60,16 +62,50 @@ exports.PostPharm = function (req, res) {
 
     })
 }
+// var DocUserList = function(){
 
-// exports.GetUser = function(req, res){
-//     var id = req.params.id;
-//     User.findOne({roll_no:id}, function(err, response){
-//         if(err){
-//             return "error";
-//         }
-//         res.json(response);
-//     })
+// return new Promise(resole, reject){
+
 // }
+
+// } 
+
+
+
+
+
+
+
+
+
+
+
+var PharmList = [];
+var DocList = [];
+exports.GetDocList = function (req, res) {
+
+    User.find({}).exec()
+        .then(function (user) {
+
+            return Doc.find({
+                    docid: user.userid
+                }).exec()
+                .then(function (doc) {
+                    DocList.push(user);
+                });
+        })
+        .then(function (user) {
+
+            return Pharm.find({
+                    pharmid: user.userid
+                }).exec()
+                .then(function (pharm) {
+                    PharmList.push(user);
+                });
+        })
+console.log(DocList + "Doctor");
+console.log(PharmList + "Pharm");
+}
 
 // exports.GetUser = function (req, res) {
 //     User.find({}, function (err, response) {
