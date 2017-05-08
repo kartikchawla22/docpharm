@@ -1,4 +1,6 @@
-var User = require('../models/model');
+var User = require('../models/UserModel');
+var Doc = require('../models/DocModel');
+var Pharm = require('../models/PharmModel');
 
 exports.PostUser = function (req, res) {
     console.log(req.body);
@@ -22,7 +24,7 @@ exports.PostUser = function (req, res) {
 }
 exports.PostDoc = function (req, res) {
     console.log(req);
-    var doc = new User({
+    var doc = new Doc({
         docid: req.body.docid,
         createdAt: new Date(),
         updateAt: null
@@ -41,7 +43,7 @@ exports.PostDoc = function (req, res) {
 }
 exports.PostPharm = function (req, res) {
     console.log(req);
-    var pharm = new User({
+    var pharm = new Pharm({
         pharmid: req.body.pharmid,
         createdAt: new Date(),
         updateAt: null
@@ -59,7 +61,7 @@ exports.PostPharm = function (req, res) {
     })
 }
 
-// exports.GetId = function(req, res){
+// exports.GetUser = function(req, res){
 //     var id = req.params.id;
 //     User.findOne({roll_no:id}, function(err, response){
 //         if(err){
